@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Exercise 1
+Exercise Set 1
 ```{r}
 library(tidyverse)
 mpg %>% tbl_df
@@ -20,4 +20,17 @@ my_plot + geom_point(mapping = aes(colour = "red"))
 my_plot + geom_point(mapping = aes(colour = "red")) + geom_smooth()
 ```
 
-Exercise 5
+Exercise Set 3
+
+```{r}
+library(tidyverse)
+data(mpg, package = "ggplot2")
+mpg %>% tbl_df
+mpg2 <- mpg %>% select(manufacturer, model, displ, year, cyl, trans, cty, hwy)
+mpg2 %>% tbl_df
+mpg3 <- mpg2 %>% mutate(displ2 = displ * displ, vol_per_cyl = round(displ / cyl,digits=2))
+mpg3 %>% tbl_df
+mpg3 %>% arrange(desc(vol_per_cyl))
+mpg3 %>% filter(manufacturer == "chevrolet") %>% arrange(desc(vol_per_cyl))
+mpg4 <- mpg3 %>% group_by(manufacturer, year) %>% summarise(vol_per_cyl = max(vol_per_cyl))
+```
