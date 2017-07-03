@@ -9,3 +9,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Exercise 1
+```{r}
+library(tidyverse)
+mpg %>% tbl_df
+my_plot <- ggplot(data = mpg, mapping = aes(x = displ, y = hwy))
+my_plot + geom_point()
+my_plot + geom_point(mapping = aes(colour = trans))
+my_plot + geom_point(mapping = aes(colour = "red"))
+my_plot + geom_point(mapping = aes(colour = "red")) + geom_smooth()
+```
+
+Exercise 5
